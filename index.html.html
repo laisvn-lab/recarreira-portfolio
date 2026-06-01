@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReCarreira — Lean Inception | Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#f0f0ec;
+  --text:#1a1a18;--text2:#6b6b66;--text3:#9b9b94;
+  --border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);
+  --purple-50:#EEEDFE;--purple-200:#AFA9EC;--purple-600:#534AB7;--purple-800:#3C3489;
+  --teal-50:#E1F5EE;--teal-200:#5DCAA5;--teal-800:#085041;
+  --green-50:#EAF3DE;--green-200:#97C459;--green-800:#27500A;--green-100:#C0DD97;
+  --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-800:#633806;
+  --red-50:#FCEBEB;--red-100:#F7C1C1;--red-800:#791F1F;
+  --blue-50:#E6F1FB;--blue-100:#B5D4F4;--blue-800:#0C447C;
+  --radius-md:8px;--radius-lg:12px;--radius-xl:16px;
+}
+body{font-family:'Inter',sans-serif;background:#f5f4f0;color:var(--text);line-height:1.6;min-height:100vh}
+.page-wrap{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.hero{padding:3rem 0 2rem;border-bottom:0.5px solid var(--border)}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius-md);padding:4px 12px;color:var(--text2);margin-bottom:1rem}
+.hero h1{font-size:32px;font-weight:600;color:var(--text);line-height:1.2;margin-bottom:.75rem}
+.hero h1 span{color:var(--purple-600)}
+.hero-sub{font-size:15px;color:var(--text2);max-width:560px;line-height:1.6}
+.hero-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)}
+.meta-item i{font-size:15px}
+.context-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;padding:1.5rem 0;border-bottom:0.5px solid var(--border)}
+.ctx-card{background:var(--bg2);border-radius:var(--radius-md);padding:.875rem 1rem}
+.ctx-card .label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.ctx-card .value{font-size:14px;font-weight:500;color:var(--text)}
+nav.section-nav{display:flex;gap:6px;flex-wrap:wrap;padding:1.25rem 0;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:#f5f4f0;z-index:10}
+.nav-btn{font-size:12px;padding:5px 12px;border-radius:50px;border:0.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.nav-btn:hover{background:var(--bg2);color:var(--text)}
+.nav-btn.active{background:var(--purple-50);border-color:var(--purple-200);color:var(--purple-800)}
+.section{padding:2rem 0;border-bottom:0.5px solid var(--border);display:none}
+.section.visible{display:block}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.section-num{width:28px;height:28px;border-radius:50%;background:var(--purple-50);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--purple-800);flex-shrink:0}
+.section-title{font-size:18px;font-weight:500;color:var(--text)}
+.section-desc{font-size:14px;color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
+/* Vision */
+.vision-grid{display:grid;gap:10px}
+.vision-row{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:start}
+.vision-label{font-size:13px;color:var(--text3);padding-top:10px;font-weight:500}
+.vision-val{background:var(--purple-50);border:0.5px solid var(--purple-200);border-radius:var(--radius-md);padding:10px 14px;font-size:14px;color:var(--purple-800)}
+/* Is/IsNot */
+.is-isnot{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quad{border-radius:var(--radius-lg);padding:1.25rem;border:0.5px solid var(--border)}
+.quad.yes{background:var(--green-50);border-color:var(--green-100)}
+.quad.no{background:var(--red-50);border-color:var(--red-100)}
+.quad.does{background:var(--blue-50);border-color:var(--blue-100)}
+.quad.doesnt{background:var(--amber-50);border-color:var(--amber-100)}
+.quad-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.quad.yes .quad-title{color:#3B6D11}
+.quad.no .quad-title{color:#A32D2D}
+.quad.does .quad-title{color:#185FA5}
+.quad.doesnt .quad-title{color:#854F0B}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;padding:3px 10px;border-radius:50px}
+.tag.yes{background:var(--green-100);color:#27500A}
+.tag.no{background:var(--red-100);color:var(--red-800)}
+.tag.does{background:var(--blue-100);color:var(--blue-800)}
+.tag.doesnt{background:var(--amber-100);color:var(--amber-800)}
+/* Objectives */
+.obj-grid{display:flex;gap:10px;flex-wrap:wrap}
+.obj-pill{background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radius-md);padding:10px 16px;font-size:14px;color:var(--text);display:flex;align-items:center;gap:8px}
+.obj-pill i{color:var(--purple-600);font-size:16px}
+/* Personas */
+.persona-tabs{display:flex;gap:6px;margin-bottom:1rem}
+.ptab{font-size:12px;padding:5px 12px;border-radius:50px;border:0.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.ptab.active{background:var(--purple-50);border-color:var(--purple-200);color:var(--purple-800)}
+.persona-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;display:none}
+.persona-card.active{display:block}
+.persona-head{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:0.5px solid var(--border)}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500}
+.av-p{background:var(--purple-50);color:var(--purple-800)}
+.av-r{background:var(--blue-50);color:var(--blue-800)}
+.av-a{background:var(--green-50);color:#3B6D11}
+.persona-name{font-size:16px;font-weight:500;color:var(--text)}
+.persona-role{font-size:13px;color:var(--text2)}
+.persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.p-block{background:var(--bg2);border-radius:var(--radius-md);padding:.875rem}
+.p-block-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text3);margin-bottom:6px}
+.p-block-text{font-size:13px;color:var(--text);line-height:1.5}
+/* Journeys */
+.journey-tabs{display:flex;gap:6px;margin-bottom:1rem}
+.jtab{font-size:12px;padding:5px 12px;border-radius:50px;border:0.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.jtab.active{background:var(--blue-50);border-color:var(--blue-100);color:var(--blue-800)}
+.journey-card{display:none}
+.journey-card.active{display:block}
+.jornada-obj{display:inline-flex;align-items:center;gap:6px;background:var(--blue-50);border-radius:var(--radius-md);padding:6px 12px;font-size:13px;color:var(--blue-800);margin-bottom:1rem}
+.steps-flow{display:flex;flex-direction:column;gap:0}
+.step-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0}
+.step-dot{width:28px;height:28px;border-radius:50%;background:var(--bg2);border:0.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text2);flex-shrink:0;margin-top:2px}
+.step-last .step-dot{background:var(--green-50);border-color:var(--green-100);color:#3B6D11}
+.step-fail .step-dot{background:var(--red-50);border-color:var(--red-100);color:var(--red-800)}
+.step-text{font-size:13px;color:var(--text);line-height:1.5;padding-top:5px}
+.step-connector{width:1px;height:10px;background:var(--border);margin-left:13px}
+/* Features */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.feat-card{border-radius:var(--radius-md);padding:10px 12px;border:0.5px solid var(--border)}
+.feat-card.green{background:var(--green-50);border-color:var(--green-100)}
+.feat-card.yellow{background:var(--amber-50);border-color:var(--amber-100)}
+.feat-card.red{background:var(--red-50);border-color:var(--red-100)}
+.feat-name{font-size:13px;font-weight:500;line-height:1.3;margin-bottom:6px}
+.feat-card.green .feat-name{color:var(--green-800)}
+.feat-card.yellow .feat-name{color:var(--amber-800)}
+.feat-card.red .feat-name{color:var(--red-800)}
+.feat-badges{display:flex;gap:4px;flex-wrap:wrap}
+.badge{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:500}
+.badge-e{background:var(--blue-50);color:var(--blue-800)}
+.badge-m{background:var(--purple-50);color:var(--purple-800)}
+.badge-ux{background:#FBEAF0;color:#72243E}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:1rem}
+.legend-item{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
+.legend-dot{width:10px;height:10px;border-radius:2px}
+/* Sequencer */
+.seq-waves{display:flex;flex-direction:column;gap:12px}
+.wave{background:var(--bg);border-radius:var(--radius-lg);padding:1rem 1.25rem;border:0.5px solid var(--border)}
+.wave-header{display:flex;align-items:center;gap:10px;margin-bottom:.75rem}
+.wave-num{width:24px;height:24px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text2);flex-shrink:0}
+.wave-label{font-size:13px;font-weight:500;color:var(--text)}
+.mvp-badge{font-size:11px;padding:2px 8px;border-radius:50px;background:var(--purple-800);color:var(--purple-50)}
+.incr-badge{font-size:11px;padding:2px 8px;border-radius:50px;background:var(--green-50);color:#3B6D11}
+.wave-items{display:flex;flex-wrap:wrap;gap:6px}
+.wi{font-size:12px;padding:4px 10px;border-radius:var(--radius-md);border:0.5px solid}
+.wi-g{background:var(--green-50);border-color:var(--green-100);color:var(--green-800)}
+.wi-y{background:var(--amber-50);border-color:var(--amber-100);color:var(--amber-800)}
+.wi-r{background:var(--red-50);border-color:var(--red-100);color:var(--red-800)}
+/* MVP Canvas */
+.mvp-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.mvp-block{background:var(--bg2);border-radius:var(--radius-md);padding:1rem}
+.mvp-block-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text3);margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.mvp-item{font-size:13px;color:var(--text);padding:4px 0;border-bottom:0.5px solid var(--border);line-height:1.4}
+.mvp-item:last-child{border-bottom:none}
+.metrics-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:6px}
+.metric-box{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-md);padding:.75rem;font-size:13px;color:var(--text)}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:1rem}
+.kpi-card{background:var(--bg2);border-radius:var(--radius-md);padding:.875rem 1rem;text-align:center}
+.kpi-val{font-size:22px;font-weight:600;color:var(--purple-600);margin-bottom:2px}
+.kpi-label{font-size:12px;color:var(--text2)}
+/* Review */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.review-card{background:var(--bg2);border-radius:var(--radius-md);padding:1rem;text-align:center}
+.review-val{font-size:20px;font-weight:600;color:var(--purple-600);margin-bottom:4px}
+.review-label{font-size:12px;color:var(--text2)}
+/* Team */
+.team-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:.5rem}
+.role-pill{display:inline-flex;align-items:center;gap:5px;background:var(--purple-50);border:0.5px solid var(--purple-200);border-radius:50px;padding:3px 10px;font-size:12px;color:var(--purple-800)}
+/* Footer */
+footer{padding:2.5rem 0 0;text-align:center}
+footer p{font-size:13px;color:var(--text3)}
+footer strong{color:var(--purple-600)}
+@media(max-width:600px){
+  .is-isnot{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .vision-row{grid-template-columns:1fr}
+  .vision-label{padding-top:0;font-size:11px}
+  nav.section-nav{gap:4px}
+  .nav-btn{font-size:11px;padding:4px 9px}
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="hero">
+    <div class="hero-tag"><i class="ti ti-brand-open-source"></i> Pipoca Ágil — trabalho voluntário</div>
+    <h1>Lean Inception: <span>ReCarreira</span></h1>
+    <p class="hero-sub">Plataforma de mentoria para profissionais 50+ que buscam propósito, reconhecimento e conexão ao encerrar a carreira formal.</p>
+    <div class="hero-meta">
+      <span class="meta-item"><i class="ti ti-users"></i> Time de 6 pessoas</span>
+      <span class="meta-item"><i class="ti ti-briefcase"></i> Papel: Product Owner</span>
+      <span class="meta-item"><i class="ti ti-map-pin"></i> Brasil — remoto</span>
+      <span class="meta-item"><i class="ti ti-calendar"></i> 2025</span>
+    </div>
+    <div style="margin-top:1rem">
+      <p style="font-size:13px;color:var(--text3);margin-bottom:.5rem">Equipe:</p>
+      <div class="team-pills">
+        <span class="role-pill"><i class="ti ti-crown" style="font-size:12px"></i> Product Owner × 2</span>
+        <span class="role-pill"><i class="ti ti-code" style="font-size:12px"></i> Dev × 1</span>
+        <span class="role-pill"><i class="ti ti-compass" style="font-size:12px"></i> Scrum Master × 1</span>
+        <span class="role-pill"><i class="ti ti-bug" style="font-size:12px"></i> QA × 1</span>
+        <span class="role-pill"><i class="ti ti-palette" style="font-size:12px"></i> UX × 1</span>
+      </div>
+    </div>
+  </header>
+
+
+
+  <nav class="section-nav" aria-label="Atividades da Lean Inception">
+    <button class="nav-btn active" onclick="showAll(this)">Visão geral</button>
+    <button class="nav-btn" onclick="showSection('s1',this)">1 · Visão</button>
+    <button class="nav-btn" onclick="showSection('s2',this)">2 · É / Não é</button>
+    <button class="nav-btn" onclick="showSection('s3',this)">3 · Objetivos</button>
+    <button class="nav-btn" onclick="showSection('s4',this)">4 · Personas</button>
+    <button class="nav-btn" onclick="showSection('s5',this)">5 · Jornadas</button>
+    <button class="nav-btn" onclick="showSection('s6',this)">6 · Features</button>
+    <button class="nav-btn" onclick="showSection('s7',this)">7 · Revisão técnica</button>
+    <button class="nav-btn" onclick="showSection('s8',this)">8 · Sequenciador</button>
+    <button class="nav-btn" onclick="showSection('s9',this)">9 · Canvas MVP</button>
+  </nav>
+
+  <!-- S1 -->
+  <section id="s1" class="section visible">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Visão do produto</div>
+    </div>
+    <p class="section-desc">Alinhamento de time sobre o problema central, o público e o diferencial do produto. Ponto de partida da Lean Inception.</p>
+    <div class="vision-grid">
+      <div class="vision-row">
+        <div class="vision-label">Para:</div>
+        <div class="vision-val">Profissionais com muitos anos de experiência</div>
+      </div>
+      <div class="vision-row">
+        <div class="vision-label">Cujo desafio:</div>
+        <div class="vision-val">Perda de propósito e reconhecimento, além da baixa habilidade tecnológica ao encerrar a carreira formal</div>
+      </div>
+      <div class="vision-row">
+        <div class="vision-label">O produto:</div>
+        <div class="vision-val"><strong>ReCarreira</strong> — plataforma web/app</div>
+      </div>
+      <div class="vision-row">
+        <div class="vision-label">Que:</div>
+        <div class="vision-val">Valoriza a experiência do profissional e o mantém ativo pós-carreira formal</div>
+      </div>
+      <div class="vision-row">
+        <div class="vision-label">Diferente de:</div>
+        <div class="vision-val">Soluções atuais que não têm foco na fase de encerramento de carreira</div>
+      </div>
+      <div class="vision-row">
+        <div class="vision-label">Nosso produto:</div>
+        <div class="vision-val">Gera valor para profissionais experientes, convertendo a vivência da carreira em oportunidade</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2 -->
+  <section id="s2" class="section visible">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">É — Não é — Faz — Não faz</div>
+    </div>
+    <p class="section-desc">Delimitação clara de escopo e posicionamento para evitar desvios durante o desenvolvimento.</p>
+    <div class="is-isnot">
+      <div class="quad yes">
+        <div class="quad-title">É</div>
+        <div class="tag-list">
+          <span class="tag yes">Plataforma intuitiva e prática</span>
+          <span class="tag yes">Para adultos 50+</span>
+          <span class="tag yes">Facilitador de transição de carreira</span>
+          <span class="tag yes">Promove mudança na rotina profissional</span>
+          <span class="tag yes">Ambiente de networking e desenvolvimento</span>
+          <span class="tag yes">Dissemina conhecimento prático</span>
+        </div>
+      </div>
+      <div class="quad no">
+        <div class="quad-title">Não é</div>
+        <div class="tag-list">
+          <span class="tag no">Plataforma complexa ou difícil</span>
+          <span class="tag no">Para pessoas com pouca experiência</span>
+          <span class="tag no">Programa formal de aposentadoria</span>
+          <span class="tag no">Rede social genérica ou motivacional</span>
+          <span class="tag no">Repositório de currículos e vagas</span>
+        </div>
+      </div>
+      <div class="quad does">
+        <div class="quad-title">Faz</div>
+        <div class="tag-list">
+          <span class="tag does">Ajuda no final da carreira profissional</span>
+          <span class="tag does">Incentiva troca de experiências</span>
+          <span class="tag does">Promove habilidades tecnológicas</span>
+          <span class="tag does">Facilita acesso a mentorias</span>
+        </div>
+      </div>
+      <div class="quad doesnt">
+        <div class="quad-title">Não faz</div>
+        <div class="tag-list">
+          <span class="tag doesnt">Promete emprego ou recolocação</span>
+          <span class="tag doesnt">Divulga dados pessoais</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 -->
+  <section id="s3" class="section visible">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Objetivos do negócio</div>
+    </div>
+    <p class="section-desc">Três pilares estratégicos que definem o que sucesso significa para o produto.</p>
+    <div class="obj-grid">
+      <div class="obj-pill"><i class="ti ti-refresh"></i>Transformação da rotina profissional no final da carreira</div>
+      <div class="obj-pill"><i class="ti ti-arrows-exchange"></i>Troca de experiência profissional entre pares</div>
+      <div class="obj-pill"><i class="ti ti-device-laptop"></i>Desenvolvimento de habilidades tecnológicas</div>
+    </div>
+  </section>
+
+  <!-- S4 -->
+  <section id="s4" class="section visible">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Personas</div>
+    </div>
+    <p class="section-desc">Três perfis representativos do público-alvo, cada um com comportamentos e necessidades distintas.</p>
+    <div class="persona-tabs">
+      <button class="ptab active" onclick="showPersona('p1',this)">Paula</button>
+      <button class="ptab" onclick="showPersona('p2',this)">Ricardo</button>
+      <button class="ptab" onclick="showPersona('p3',this)">Ana</button>
+    </div>
+    <div id="p1" class="persona-card active">
+      <div class="persona-head">
+        <div class="avatar av-p">PA</div>
+        <div><div class="persona-name">Paula</div><div class="persona-role">55 anos · Mestre em Contabilidade · Funcionária pública · Viúva, sem filhos</div></div>
+      </div>
+      <div class="persona-grid">
+        <div class="p-block"><div class="p-block-title">Objetivo na jornada</div><div class="p-block-text">Status, divulgar conquistas e inspirar outras pessoas</div></div>
+        <div class="p-block"><div class="p-block-title">Comportamento</div><div class="p-block-text">Vive perda de identidade profissional, temendo o ócio</div></div>
+        <div class="p-block" style="grid-column:1/-1"><div class="p-block-title">Necessidades</div><div class="p-block-text">Busca pertencimento, propósito e reconhecimento pela trajetória e experiência acumulada</div></div>
+      </div>
+    </div>
+    <div id="p2" class="persona-card">
+      <div class="persona-head">
+        <div class="avatar av-r">RI</div>
+        <div><div class="persona-name">Ricardo — O Profissional Experiente</div><div class="persona-role">62 anos · Engenheiro Civil · Em transição para aposentadoria · Liderou grandes projetos e equipes técnicas</div></div>
+      </div>
+      <div class="persona-grid">
+        <div class="p-block"><div class="p-block-title">Objetivo na jornada</div><div class="p-block-text">Status e compartilhar conhecimentos técnicos acumulados</div></div>
+        <div class="p-block"><div class="p-block-title">Comportamento</div><div class="p-block-text">Proativo, mas percebe que sua opinião está sendo menos requisitada. Sente-se desconectado do ambiente digital.</div></div>
+        <div class="p-block" style="grid-column:1/-1"><div class="p-block-title">Necessidades</div><div class="p-block-text">Encerrar a trajetória com dignidade e contribuição. Busca espaço onde possa compartilhar sua experiência e sentir-se valorizado.</div></div>
+      </div>
+    </div>
+    <div id="p3" class="persona-card">
+      <div class="persona-head">
+        <div class="avatar av-a">AN</div>
+        <div><div class="persona-name">Ana</div><div class="persona-role">52 anos · Casada · Mãe de 2 adolescentes · 20+ anos de experiência · Gerência / Liderança técnica · CLT</div></div>
+      </div>
+      <div class="persona-grid">
+        <div class="p-block"><div class="p-block-title">Objetivo na jornada</div><div class="p-block-text">Novo modelo de trabalho, qualidade de vida, tecnologia, companhia e troca de experiência</div></div>
+        <div class="p-block"><div class="p-block-title">Comportamento</div><div class="p-block-text">Agenda menos cheia após desaceleração da carreira; perda de identidade profissional; dificuldade com novos modelos de trabalho</div></div>
+        <div class="p-block" style="grid-column:1/-1"><div class="p-block-title">Necessidades</div><div class="p-block-text">Preencher o vazio da rotina profissional; conversas maduras sobre carreira; sentido além do emprego; aprender tecnologia; opção flexível para conciliar trabalho e família</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 -->
+  <section id="s5" class="section visible">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Jornadas do usuário</div>
+    </div>
+    <p class="section-desc">Uma jornada As-Is por persona — mostrando a rotina atual e os pontos de fricção que o ReCarreira resolve.</p>
+    <div class="journey-tabs">
+      <button class="jtab active" onclick="showJourney('j1',this)">Paula</button>
+      <button class="jtab" onclick="showJourney('j2',this)">Ricardo</button>
+      <button class="jtab" onclick="showJourney('j3',this)">Ana</button>
+    </div>
+    <div id="j1" class="journey-card active">
+      <div class="jornada-obj"><i class="ti ti-target"></i>Objetivo: status, divulgar e inspirar</div>
+      <div class="steps-flow">
+        <div class="step-item"><div class="step-dot">1</div><div class="step-text">Acorda cedo, toma café sozinha</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">2</div><div class="step-text">Vai ao home office e busca novas oportunidades de emprego na internet</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">3</div><div class="step-text">Combina pelo WhatsApp de se encontrar com antiga colega de trabalho para almoçar</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">4</div><div class="step-text">Almoça com a amiga e conta sobre sua busca por uma nova rotina</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">5</div><div class="step-text">Faz um post no LinkedIn compartilhando seu novo momento de carreira</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item step-last"><div class="step-dot">✓</div><div class="step-text">Fica feliz pelo reconhecimento e repercussão positiva na rede profissional</div></div>
+      </div>
+    </div>
+    <div id="j2" class="journey-card">
+      <div class="jornada-obj"><i class="ti ti-target"></i>Objetivo: status e compartilhar conhecimento</div>
+      <div class="steps-flow">
+        <div class="step-item"><div class="step-dot">1</div><div class="step-text">Acorda, toma café com a esposa</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">2</div><div class="step-text">Faz sua corrida</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">3</div><div class="step-text">Vai para sua última obra, assombrado pelo medo da aposentadoria</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">4</div><div class="step-text">Durante o almoço com estagiários, comenta sobre o fim da carreira e desejo de continuar compartilhando conhecimentos</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">5</div><div class="step-text">Estagiário recomenda buscar no LinkedIn ou outros sites por novas oportunidades</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">6</div><div class="step-text">Em casa, pesquisa oportunidades mas se sente inseguro pela falta de habilidade digital exigida</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item step-fail"><div class="step-dot">✗</div><div class="step-text">Após navegar por vários sites, sente dificuldade em encontrar oportunidades para compartilhar conhecimentos práticos</div></div>
+      </div>
+    </div>
+    <div id="j3" class="journey-card">
+      <div class="jornada-obj"><i class="ti ti-target"></i>Objetivo: novo modelo de trabalho, qualidade de vida, tecnologia e troca de experiência</div>
+      <div class="steps-flow">
+        <div class="step-item"><div class="step-dot">1</div><div class="step-text">Acorda em uma sexta-feira, prepara o café da família</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">2</div><div class="step-text">Vai para a academia</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">3</div><div class="step-text">Vai para o trabalho, percebe que suas demandas estão reduzidas</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">4</div><div class="step-text">Volta para casa mais cedo com banco de horas</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item"><div class="step-dot">5</div><div class="step-text">Marido pede uma pizza para a família; enquanto escolhe, procura anúncios de trabalhos com horários flexíveis</div></div>
+        <div class="step-connector"></div>
+        <div class="step-item step-fail"><div class="step-dot">✗</div><div class="step-text">Finaliza a busca sem uma ideia clara de onde encontrar oportunidades alinhadas com o que ela busca</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 -->
+  <section id="s6" class="section visible">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Brainstorming de funcionalidades</div>
+    </div>
+    <p class="section-desc">19 funcionalidades mapeadas pelo time, avaliadas em esforço técnico (E), retorno de negócio ($$$) e valor para o usuário (♥).</p>
+    <div class="feat-grid">
+      <div class="feat-card green"><div class="feat-name">Cadastro de Mentores</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card green"><div class="feat-name">Cadastro de Mentorados</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card green"><div class="feat-name">Criar perfil do mentor</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card green"><div class="feat-name">Criar perfil do mentorado</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Cadastro de horário para mentoria pelo mentor</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Agendamento de mentorias pelo mentorado</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Integração com Google Calendar</div><div class="feat-badges"><span class="badge badge-e">EE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card green"><div class="feat-name">Compartilhar conquistas como mentor</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$</span><span class="badge badge-ux">♥</span></div></div>
+      <div class="feat-card red"><div class="feat-name">Chat entre mentor e mentorado</div><div class="feat-badges"><span class="badge badge-e">EEE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Avaliação mútua</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card red"><div class="feat-name">Gravação das sessões de mentoria</div><div class="feat-badges"><span class="badge badge-e">EEE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Gerar link para reunião da mentoria</div><div class="feat-badges"><span class="badge badge-e">EEE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Envio do link da mentoria por e-mail</div><div class="feat-badges"><span class="badge badge-e">E</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card red"><div class="feat-name">Gamificação</div><div class="feat-badges"><span class="badge badge-e">EEE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Cadastro de trilhas de ensino</div><div class="feat-badges"><span class="badge badge-e">EE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card red"><div class="feat-name">Monetização da mentoria</div><div class="feat-badges"><span class="badge badge-e">EEE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Consulta de gravações das mentorias</div><div class="feat-badges"><span class="badge badge-e">EE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Transcrição das gravações das mentorias</div><div class="feat-badges"><span class="badge badge-e">EE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+      <div class="feat-card yellow"><div class="feat-name">Envio de notificações para os usuários</div><div class="feat-badges"><span class="badge badge-e">EEE</span><span class="badge badge-m">$$$</span><span class="badge badge-ux">♥♥♥</span></div></div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#97C459"></span>Baixo esforço, alto valor</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#EF9F27"></span>Esforço médio</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#E24B4A"></span>Alto esforço / alta complexidade</span>
+    </div>
+  </section>
+
+  <!-- S7 -->
+  <section id="s7" class="section visible">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">Revisão técnica, de negócio e de UX</div>
+    </div>
+    <p class="section-desc">Cada funcionalidade foi avaliada em três dimensões para orientar o sequenciamento e as decisões de priorização.</p>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="review-val">E → EEE</div>
+        <div class="review-label">Esforço técnico de desenvolvimento</div>
+      </div>
+      <div class="review-card">
+        <div class="review-val">$ → $$$</div>
+        <div class="review-label">Retorno e valor para o negócio</div>
+      </div>
+      <div class="review-card">
+        <div class="review-val">♥ → ♥♥♥</div>
+        <div class="review-label">Valor percebido pelo usuário (UX)</div>
+      </div>
+    </div>
+    <div style="background:var(--bg2);border-radius:var(--radius-md);padding:1rem 1.25rem">
+      <p style="font-size:14px;color:var(--text);line-height:1.7"><strong>Zona verde</strong> (baixo esforço + alto retorno): funcionalidades de cadastro, perfil e agendamento — priorizadas para o MVP.<br><br><strong>Zona amarela</strong> (esforço médio): integração de calendário, avaliação mútua, notificações — ondas posteriores ao MVP.<br><br><strong>Zona vermelha</strong> (alto esforço / alta complexidade): chat, gravação de sessões, gamificação e monetização — deixadas para incrementos, após validação do núcleo.</p>
+    </div>
+  </section>
+
+  <!-- S8 -->
+  <section id="s8" class="section visible">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Sequenciador</div>
+    </div>
+    <p class="section-desc">As funcionalidades foram ordenadas em 8 ondas de entrega. O MVP foi definido ao final da onda 3, com a plataforma capaz de conectar mentores e mentorados em uma sessão completa.</p>
+    <div class="seq-waves">
+      <div class="wave">
+        <div class="wave-header"><div class="wave-num">1</div><div class="wave-label">Fundação da plataforma</div></div>
+        <div class="wave-items">
+          <span class="wi wi-g">Cadastro de Mentores</span>
+          <span class="wi wi-g">Cadastro de Mentorados</span>
+          <span class="wi wi-g">Criar perfil do mentor</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header"><div class="wave-num">2</div><div class="wave-label">Perfis e agenda</div></div>
+        <div class="wave-items">
+          <span class="wi wi-g">Criar perfil do mentorado</span>
+          <span class="wi wi-y">Cadastro de horário para mentoria pelo mentor</span>
+          <span class="wi wi-y">Agendamento de mentorias pelo mentorado</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header">
+          <div class="wave-num">3</div>
+          <div class="wave-label">Conexão da mentoria &nbsp;<span class="mvp-badge">MVP</span></div>
+        </div>
+        <div class="wave-items">
+          <span class="wi wi-r">Gerar link para reunião</span>
+          <span class="wi wi-y">Envio do link da mentoria por e-mail</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header"><div class="wave-num">4</div><div class="wave-label">Comunicação</div></div>
+        <div class="wave-items">
+          <span class="wi wi-r">Chat entre mentor e mentorado</span>
+          <span class="wi wi-y">Envio de notificações</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header"><div class="wave-num">5</div><div class="wave-label">Engajamento</div></div>
+        <div class="wave-items">
+          <span class="wi wi-y">Integração com Google Calendar</span>
+          <span class="wi wi-y">Avaliação mútua</span>
+          <span class="wi wi-g">Compartilhar conquistas como mentor</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header"><div class="wave-num">6</div><div class="wave-label">Conteúdo</div></div>
+        <div class="wave-items">
+          <span class="wi wi-r">Gravação das sessões de mentoria</span>
+          <span class="wi wi-y">Cadastro de trilhas de ensino</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header"><div class="wave-num">7</div><div class="wave-label">Inteligência</div></div>
+        <div class="wave-items">
+          <span class="wi wi-r">Gamificação</span>
+          <span class="wi wi-y">Transcrição das gravações</span>
+        </div>
+      </div>
+      <div class="wave">
+        <div class="wave-header">
+          <div class="wave-num">8</div>
+          <div class="wave-label">Receita &nbsp;<span class="incr-badge">Incremento</span></div>
+        </div>
+        <div class="wave-items">
+          <span class="wi wi-r">Monetização da mentoria</span>
+          <span class="wi wi-y">Consulta de gravações</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S9 -->
+  <section id="s9" class="section visible">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">Canvas MVP</div>
+    </div>
+    <p class="section-desc">Síntese executiva do MVP: proposta de valor, personas-alvo, jornadas atendidas, funcionalidades e métricas de sucesso.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val">20</div><div class="kpi-label">mentores cadastrados em 3 meses</div></div>
+      <div class="kpi-card"><div class="kpi-val">100</div><div class="kpi-label">usuários na plataforma</div></div>
+      <div class="kpi-card"><div class="kpi-val">40%</div><div class="kpi-label">dos mentores ativos em mentorias</div></div>
+    </div>
+
+    <div class="mvp-blocks" style="margin-top:1rem">
+      <div class="mvp-block">
+        <div class="mvp-block-title"><i class="ti ti-bulb"></i> Proposta do MVP</div>
+        <div class="mvp-item">Validar o app como meio para compartilhar experiência profissional através da mentoria</div>
+      </div>
+      <div class="mvp-block">
+        <div class="mvp-block-title"><i class="ti ti-users"></i> Personas segmentadas</div>
+        <div class="mvp-item">Pessoas 50+</div>
+        <div class="mvp-item">Região Sudeste</div>
+        <div class="mvp-item">Profissionais com anos de experiência que desejam compartilhar</div>
+      </div>
+      <div class="mvp-block">
+        <div class="mvp-block-title"><i class="ti ti-map"></i> Jornadas atendidas</div>
+        <div class="mvp-item">Consulta de agenda de mentoria para troca de experiências</div>
+        <div class="mvp-item">Consumir trilhas de conhecimento</div>
+        <div class="mvp-item">Realizar mentoria</div>
+        <div class="mvp-item">Facilitar troca de experiência prática entre profissionais</div>
+      </div>
+      <div class="mvp-block">
+        <div class="mvp-block-title"><i class="ti ti-list-check"></i> Funcionalidades</div>
+        <div class="mvp-item">Cadastro de usuário</div>
+        <div class="mvp-item">Criar perfil de usuário</div>
+        <div class="mvp-item">Agendamento de mentorias</div>
+        <div class="mvp-item">Streaming / Videochamada</div>
+        <div class="mvp-item">Notificações de mentorias</div>
+        <div class="mvp-item">Cadastro de trilhas de ensino</div>
+        <div class="mvp-item">Acessibilidade na plataforma</div>
+      </div>
+      <div class="mvp-block" style="grid-column:1/-1">
+        <div class="mvp-block-title"><i class="ti ti-chart-line"></i> Métricas para validar hipóteses</div>
+        <div class="metrics-inner">
+          <div class="metric-box">Número de mentores ativos por mês</div>
+          <div class="metric-box">Número de mentorados ativos por mês</div>
+          <div class="metric-box">Número de mentorados inativos por mês</div>
+          <div class="metric-box">Número de mentores inativos por mês</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>ReCarreira · Lean Inception · Pipoca Ágil<br><strong>Laís</strong> — Product Owner voluntária · 2025</p>
+  </footer>
+
+</div>
+
+<script>
+const allSections=['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+
+function showAll(btn){
+  allSections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.add('visible');
+  });
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+function showSection(id, btn){
+  allSections.forEach(s=>{
+    const el=document.getElementById(s);
+    if(el) el.classList.toggle('visible', s===id);
+  });
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+function showPersona(id, btn){
+  ['p1','p2','p3'].forEach(p=>{
+    const el=document.getElementById(p);
+    if(el) el.classList.toggle('active', p===id);
+  });
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+function showJourney(id, btn){
+  ['j1','j2','j3'].forEach(j=>{
+    const el=document.getElementById(j);
+    if(el) el.classList.toggle('active', j===id);
+  });
+  document.querySelectorAll('.jtab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+</script>
+</body>
+</html>
